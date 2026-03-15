@@ -1,0 +1,13 @@
+<header>
+  <div class="header-container">
+    <a href="/" class="brand-name">fish is watching</a>
+    <nav>
+      <a href="/about/"{% if page.url and page.url == "/about/" %} class="active"{% endif %}>About</a>
+      <a href="/weekly/"{% if page.url and page.url == "/weekly/" %} class="active"{% endif %}>Weekly</a>
+      <a href="/booking/"{% if page.url and page.url == "/booking/" %} class="active"{% endif %}>Booking</a>
+      <span class="nav-divider">|</span>
+      <a href="{{ site.social.bandcamp }}" target="_blank" rel="noopener" class="external">Bandcamp</a>
+      <a href="{{ site.social.youtube }}" target="_blank" rel="noopener" class="external">YouTube</a>
+    </nav>
+  </div>
+</header>

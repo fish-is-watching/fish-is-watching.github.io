@@ -1,0 +1,358 @@
+/* ================================================
+   fish is watching — design system v2
+   Archivo wght 200, wdth 120
+   Full-width layout, editorial approach
+   ================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,200;0,400;0,700;1,200;1,400&wdth@75..125&display=swap');
+
+:root {
+  --white: #FFFFFF;
+  --black: #0A0A0A;
+  --grey-700: #404040;
+  --grey-500: #737373;
+  --grey-300: #B3B3B3;
+  --grey-100: #F0F0F0;
+  --accent: #D64D8A;
+
+  --font: 'Archivo', sans-serif;
+  --size: 23px;
+  --line-height: 1.5;
+  --font-weight: 200;
+  --font-width: 120;
+}
+
+/* ------------------------------------------------
+   Reset
+   ------------------------------------------------ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ------------------------------------------------
+   Base
+   ------------------------------------------------ */
+
+html {
+  font-size: var(--size);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: var(--font-weight);
+  font-stretch: var(--font-width);
+  line-height: var(--line-height);
+  color: var(--grey-700);
+  background: var(--white);
+}
+
+/* ------------------------------------------------
+   Typography — one size, extended width, light weight
+   ------------------------------------------------ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 1rem;
+  line-height: var(--line-height);
+  font-weight: 400;
+  font-stretch: var(--font-width);
+  color: var(--black);
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+p:last-child {
+  margin-bottom: 200px;
+}
+
+strong, b {
+  font-weight: 400;
+  color: var(--black);
+}
+
+em, i {
+  font-style: italic;
+}
+
+a {
+  color: var(--grey-700);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--grey-300);
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+a:hover {
+  color: var(--black);
+  text-decoration-color: var(--black);
+}
+
+/* ------------------------------------------------
+   Layout — full width, generous padding
+   ------------------------------------------------ */
+
+header {
+  padding: 40px 48px 32px;
+  border-bottom: 1px solid var(--grey-100);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.brand-name {
+  font-style: italic;
+  font-weight: var(--font-weight);
+  font-stretch: var(--font-width);
+  color: var(--grey-500);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.brand-name:hover {
+  color: var(--black);
+}
+
+header nav {
+  display: flex;
+  gap: 28px;
+  align-items: baseline;
+}
+
+header nav a {
+  color: var(--black);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--grey-300);
+  font-weight: var(--font-weight);
+  font-stretch: var(--font-width);
+}
+
+header nav a:hover {
+  text-decoration-color: var(--black);
+}
+
+header nav a.active {
+  text-decoration-color: var(--accent);
+}
+
+header nav a.external {
+  color: var(--grey-500);
+}
+
+header nav a.external:hover {
+  color: var(--black);
+}
+
+.nav-divider {
+  color: var(--grey-300);
+  font-weight: var(--font-weight);
+}
+
+/* ------------------------------------------------
+   Main — full width with side padding
+   ------------------------------------------------ */
+
+main {
+  padding: 80px 48px 120px;
+}
+
+main > section {
+  margin-top: 72px;
+}
+
+main > section:first-child {
+  margin-top: 0;
+}
+
+.subsection {
+  margin-top: 32px;
+}
+
+/* ------------------------------------------------
+   Photo breaks — full width insertions
+   ------------------------------------------------ */
+
+.photo-break {
+  margin: 72px -48px;
+}
+
+.photo-break img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ------------------------------------------------
+   Footer
+   ------------------------------------------------ */
+
+footer {
+  padding: 32px 48px 48px;
+  border-top: 1px solid var(--grey-100);
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-nav a,
+.footer-meta a {
+  color: var(--grey-300);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--grey-300);
+  font-weight: var(--font-weight);
+  font-stretch: var(--font-width);
+}
+
+.footer-nav a:hover,
+.footer-meta a:hover {
+  color: var(--grey-500);
+  text-decoration-color: var(--grey-500);
+}
+
+.footer-meta {
+  color: var(--grey-300);
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+}
+
+/* ------------------------------------------------
+   Content
+   ------------------------------------------------ */
+
+.muted {
+  color: var(--grey-300);
+}
+
+.secondary {
+  color: var(--grey-500);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.participant-name {
+  font-weight: 400;
+  color: var(--black);
+}
+
+.contact-section {
+  margin-top: 72px;
+  padding-top: 32px;
+  border-top: 1px solid var(--grey-100);
+}
+
+/* ------------------------------------------------
+   Embeds & Media — full width
+   ------------------------------------------------ */
+
+.embed-container {
+  margin: 40px 0;
+}
+
+.embed-container iframe {
+  width: 100%;
+  border: none;
+}
+
+.photo-block {
+  margin: 48px 0;
+}
+
+.photo-block img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ------------------------------------------------
+   Weekly
+   ------------------------------------------------ */
+
+.weekly-list {
+  list-style: none;
+}
+
+.weekly-list li {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--grey-100);
+}
+
+.weekly-list li:first-child {
+  padding-top: 0;
+}
+
+.weekly-current {
+  padding-bottom: 48px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--grey-100);
+}
+
+/* ------------------------------------------------
+   Responsive
+   ------------------------------------------------ */
+
+@media (max-width: 768px) {
+  :root {
+    --size: 18px;
+  }
+
+  header {
+    padding: 24px 20px 20px;
+  }
+
+  .header-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  header nav {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  main {
+    padding: 48px 20px 80px;
+  }
+
+  main > section {
+    margin-top: 48px;
+  }
+
+  footer {
+    padding: 24px 20px 32px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+  }
+
+  .photo-break {
+    margin: 48px -20px;
+  }
+}

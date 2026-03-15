@@ -1,0 +1,50 @@
+---
+layout: base.njk
+title: Weekly
+description: "Weekly Studio Session. One session per week, published as recorded. Single take. No edits."
+permalink: /weekly/
+tags: []
+---
+
+<section>
+  <h2>Weekly Studio Session</h2>
+  <div class="subsection">
+    <p>One session per week, published as recorded. Single take. No edits. No overdubs. Minimal processing, equalization and compression at most.</p>
+    <p>Each session stays online for seven days, then is replaced by the next one.</p>
+    <p>The Weekly documents what happens when the collective meets. Some sessions are tight and focused. Others are slow or uncomfortable. All of them are published. The point is regularity and honesty, not perfection.</p>
+  </div>
+</section>
+
+<section>
+  {% set sessions = collections.weekly %}
+  {% if sessions.length %}
+  {% set current = sessions | first %}
+  <div class="weekly-current">
+    <h2>Current</h2>
+    <div class="subsection">
+      <p><strong>{{ current.data.title }}</strong></p>
+      <p class="muted">{{ current.data.date | formatDate }}{% if current.data.participants %} / <span class="secondary">{{ current.data.participants | join(" / ") }}</span>{% endif %}</p>
+      {% if current.data.soundcloud_embed %}
+      <div class="embed-container">
+        {{ current.data.soundcloud_embed | safe }}
+      </div>
+      {% endif %}
+      {{ current.content | safe }}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if sessions.length > 1 %}
+  <h2>Archive</h2>
+  <ul class="weekly-list subsection">
+    {% for session in sessions %}
+    {% if not loop.first %}
+    <li>
+      <strong>{{ session.data.title }}</strong>
+      <span class="muted"> / {{ session.data.date | formatDate }}{% if session.data.participants %} / <span class="secondary">{{ session.data.participants | join(" / ") }}</span>{% endif %}</span>
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+  {% endif %}
+</section>

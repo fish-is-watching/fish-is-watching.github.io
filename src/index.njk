@@ -1,0 +1,48 @@
+---
+layout: base.njk
+title: ""
+description: "fish is watching is a modular sound collective based in Stuttgart. Process as form."
+---
+
+<div class="section">
+  <p class="section-title">fish is watching</p>
+  <p>Modular performance collective exploring listening as method and process as form.</p>
+</div>
+
+<div class="section">
+  <p>We do not play music, we enter the sound that already unfolds and let the situation shape the form.</p>
+  <p>The process matters more than the product. Nothing repeats, nothing is polished to perfection.</p>
+  <p>The collective is modular: each participant is a unique module, a method, an experience, a sensitivity.</p>
+  <p>We do not perform, we let listening happen.</p>
+</div>
+
+{% set latestWeekly = collections.weekly | first %}
+{% if latestWeekly %}
+<div class="section">
+  <p class="section-title"><a href="/weekly/">Weekly Studio Session {{ latestWeekly.data.number }}</a></p>
+  <p class="session-meta">{{ latestWeekly.data.date | formatDate }}{% if latestWeekly.data.participants %} / <span class="session-participants">{{ latestWeekly.data.participants | join(" / ") }}</span>{% endif %}</p>
+  <p>Single take. No edits. Seven days online. Then replaced.</p>
+  {% if latestWeekly.data.soundcloud_embed %}
+  <div class="embed-container">
+    {{ latestWeekly.data.soundcloud_embed | safe }}
+  </div>
+  {% endif %}
+  <p><a href="/weekly/">All sessions</a></p>
+</div>
+{% endif %}
+
+{% set latestProject = collections.projects | first %}
+{% if latestProject %}
+<div class="section">
+  <p class="section-title">Recent work</p>
+  <p><a href="{{ latestProject.url }}"><strong>{{ latestProject.data.title }}</strong></a></p>
+  <p class="muted">{{ latestProject.data.location }}, {{ latestProject.data.date | formatDate }}</p>
+  <p>{{ latestProject.data.subtitle }}</p>
+</div>
+{% endif %}
+
+<div class="contact-section">
+  <p class="section-title">Get in touch</p>
+  <p>Exhibitions and live performances: <a href="mailto:{{ site.email.booking }}">{{ site.email.booking }}</a></p>
+  <p>Collaborations: <a href="mailto:{{ site.email.general }}">{{ site.email.general }}</a></p>
+</div>
