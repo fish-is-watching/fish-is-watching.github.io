@@ -34,6 +34,7 @@ collections:
     folder: "src/projects"
     create: true
     slug: "{{fields.slug}}"
+    extension: "md"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string", hint: "URL-friendly name, e.g. resonanzraum-vita" }
@@ -64,3 +65,44 @@ collections:
           - { label: "Title", name: "title", widget: "hidden", default: "Booking" }
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Impressum"
+        name: "impressum"
+        file: "src/impressum.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+          - { label: "Title", name: "title", widget: "hidden", default: "Impressum" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Privacy Policy"
+        name: "privacy"
+        file: "src/privacy.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+          - { label: "Title", name: "title", widget: "hidden", default: "Privacy Policy" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "settings"
+    label: "Settings"
+    files:
+      - label: "Site settings"
+        name: "site"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Site title", name: "title", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Site URL", name: "url", widget: "string" }
+          - label: "Email"
+            name: "email"
+            widget: "object"
+            fields:
+              - { label: "Booking", name: "booking", widget: "string" }
+              - { label: "General", name: "general", widget: "string" }
+          - label: "Social links"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Instagram", name: "instagram", widget: "string" }
+              - { label: "Bandcamp", name: "bandcamp", widget: "string" }
+              - { label: "YouTube", name: "youtube", widget: "string" }
+              - { label: "SoundCloud", name: "soundcloud", widget: "string" }
