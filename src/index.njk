@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: ""
-description: "fish is watching is a modular sound collective based in Stuttgart. Process as form."
+description: "fish is watching is a modular performance collective based in Stuttgart."
 ---
 
 <div class="section">
@@ -10,10 +10,8 @@ description: "fish is watching is a modular sound collective based in Stuttgart.
 </div>
 
 <div class="section">
-  <p>We do not play music, we enter the sound that already unfolds and let the situation shape the form.</p>
-  <p>The process matters more than the product. Nothing repeats, nothing is polished to perfection.</p>
-  <p>The collective is modular: each participant is a unique module, a method, an experience, a sensitivity.</p>
-  <p>We do not perform, we let listening happen.</p>
+  <p>The collective is modular. Each participant is a distinct setup, a method, a way of listening. Configurations shift. The sound shifts with them.</p>
+  <p>Sessions are recorded as they happen. Some are published as they are. Some are edited into composed work. The process is the form.</p>
 </div>
 
 {% set latestWeekly = collections.weekly | first %}
@@ -46,3 +44,90 @@ description: "fish is watching is a modular sound collective based in Stuttgart.
   <p>Exhibitions and live performances: <a href="mailto:{{ site.email.booking }}">{{ site.email.booking }}</a></p>
   <p>Collaborations: <a href="mailto:{{ site.email.general }}">{{ site.email.general }}</a></p>
 </div>
+
+<div id="egg-layer"></div>
+<div id="egg-photo"><img id="egg-img" src="" alt=""></div>
+
+<script>
+(function() {
+  var images = ['/assets/images/Modular+PA-1.jpg', '/assets/images/Modular+PA-Marshall-1.jpg', '/assets/images/Mischpult.jpg', '/assets/images/fish-mischpult.jpg'];
+  var layer = document.getElementById('egg-layer');
+  var photo = document.getElementById('egg-photo');
+  var img = document.getElementById('egg-img');
+  var hideTimer;
+  var cooldown = false;
+
+  function createZones() {
+    layer.innerHTML = '';
+    var pageH = document.documentElement.scrollHeight;
+    var pageW = document.documentElement.clientWidth;
+    var count = Math.floor((pageH * pageW) / 180000);
+    count = Math.max(10, Math.min(count, 30));
+
+    for (var i = 0; i < count; i++) {
+      var zone = document.createElement('div');
+      zone.className = 'egg-zone';
+      zone.style.left = (Math.random() * (pageW - 50)) + 'px';
+      zone.style.top = (Math.random() * (pageH - 50)) + 'px';
+      layer.appendChild(zone);
+    }
+  }
+
+  function showPhoto(triggeredZone) {
+    if (cooldown) return;
+    cooldown = true;
+
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    var scrollY = window.scrollY || window.pageYOffset;
+
+    // photo max size, keeps aspect ratio via CSS
+    var maxW = Math.min(360, vw * 0.35);
+    var x = 48 + Math.random() * (vw - maxW - 96);
+    var y = scrollY + 48 + Math.random() * (vh - 280);
+
+    img.src = images[Math.floor(Math.random() * images.length)];
+    photo.style.left = x + 'px';
+    photo.style.top = y + 'px';
+    photo.style.maxWidth = maxW + 'px';
+    photo.style.opacity = '1';
+
+    // zone reacts: brief flash then disappears
+    triggeredZone.classList.add('egg-zone-found');
+    setTimeout(function() {
+      triggeredZone.remove();
+    }, 600);
+
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function() {
+      photo.style.opacity = '0';
+      cooldown = false;
+    }, 2400);
+  }
+
+  layer.addEventListener('mouseover', function(e) {
+    if (e.target.classList.contains('egg-zone')) {
+      showPhoto(e.target);
+    }
+  });
+
+  createZones();
+  window.addEventListener('resize', createZones);
+
+  // replenish zones periodically (found ones get removed)
+  setInterval(function() {
+    var existing = layer.querySelectorAll('.egg-zone').length;
+    if (existing < 5) {
+      var pageH = document.documentElement.scrollHeight;
+      var pageW = document.documentElement.clientWidth;
+      for (var i = 0; i < 5; i++) {
+        var zone = document.createElement('div');
+        zone.className = 'egg-zone';
+        zone.style.left = (Math.random() * (pageW - 50)) + 'px';
+        zone.style.top = (Math.random() * (pageH - 50)) + 'px';
+        layer.appendChild(zone);
+      }
+    }
+  }, 8000);
+})();
+</script>
