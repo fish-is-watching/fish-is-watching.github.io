@@ -1,6 +1,8 @@
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy({"src/assets/favicon.ico": "favicon.ico"});
+  eleventyConfig.addPassthroughCopy({"src/CNAME": "CNAME"});
+  eleventyConfig.addPassthroughCopy("admin");
 
   eleventyConfig.addCollection("weekly", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/weekly/*.md")
