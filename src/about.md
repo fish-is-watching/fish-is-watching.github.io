@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: About
-description: fish is watching is a modular sound collective based in Stuttgart.
+description: fish is watching is a modular performance collective based in Stuttgart.
 ---
 
 <section>
