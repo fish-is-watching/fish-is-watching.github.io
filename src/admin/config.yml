@@ -1,0 +1,66 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "weekly"
+    label: "Weekly Sessions"
+    folder: "src/weekly"
+    create: true
+    slug: "{{fields.number}}"
+    extension: "md"
+    fields:
+      - { label: "Title", name: "title", widget: "string", hint: "e.g. Weekly Studio Session 049 a01/b01" }
+      - { label: "Number", name: "number", widget: "number", value_type: "int" }
+      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - label: "Participants"
+        name: "participants"
+        widget: "list"
+        field: { label: "Name", name: "name", widget: "string" }
+      - { label: "SoundCloud Embed", name: "soundcloud_embed", widget: "text", required: false, hint: "Paste the full iframe code from SoundCloud" }
+      - { label: "YouTube URL", name: "youtube_url", widget: "string", required: false }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        field: { label: "Tag", name: "tag", widget: "string" }
+      - { label: "Notes", name: "body", widget: "markdown", required: false, hint: "Optional description or notes about the session" }
+
+  - name: "projects"
+    label: "Projects"
+    folder: "src/projects"
+    create: true
+    slug: "{{fields.slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-friendly name, e.g. resonanzraum-vita" }
+      - { label: "Subtitle", name: "subtitle", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "YouTube URL", name: "youtube_url", widget: "string", required: false }
+      - { label: "Bandcamp URL", name: "bandcamp_url", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About"
+        name: "about"
+        file: "src/about.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+          - { label: "Title", name: "title", widget: "hidden", default: "About" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Booking"
+        name: "booking"
+        file: "src/booking.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+          - { label: "Title", name: "title", widget: "hidden", default: "Booking" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
