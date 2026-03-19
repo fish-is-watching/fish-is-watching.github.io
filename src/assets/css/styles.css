@@ -413,7 +413,7 @@ footer {
 
 #photo-reveal {
   position: absolute;
-  max-width: 320px;
+  max-width: 560px;
   pointer-events: none;
   z-index: 5;
 }
