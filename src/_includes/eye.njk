@@ -47,7 +47,10 @@ function spawn(){
   wrap.style.left=(100+Math.random()*(pw-280))+'px';
   wrap.style.top=(sy+80+Math.random()*(vh-220))+'px';
   var frames=[];
-  for(var i=0;i<stages.length;i++){var div=document.createElement('div');div.className='eye-frame';div.innerHTML=stages[i];wrap.appendChild(div);frames.push(div)}
+  var hue=Math.floor(Math.random()*360);
+  var accentColor='hsl('+hue+',62%,57%)';
+  for(var i=0;i<stages.length;i++){var div=document.createElement('div');div.className='eye-frame';div.innerHTML=stages[i];wrap.appendChild(div);frames.push(div);
+    if(i===5){var paths=div.querySelectorAll('path');if(paths.length>=2){paths[1].setAttribute('fill',accentColor)}}}
   eyeLayer.appendChild(wrap);
   var cs=-1,alive=true,blinkTimer,closing=false;
   function ss(s){if(s===cs)return;cs=s;for(var i=0;i<frames.length;i++){if(i===s)frames[i].classList.add('active');else frames[i].classList.remove('active')}}
