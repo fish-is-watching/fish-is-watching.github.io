@@ -62,21 +62,30 @@ function spawn(){
   function startBlink(){blinkTimer=setInterval(function(){if(!alive||isHov||closing)return;ss(2);setTimeout(function(){if(alive&&!isHov&&!closing)ss(1)},80);setTimeout(function(){if(alive&&!isHov&&!closing)ss(0)},140);setTimeout(function(){if(alive&&!isHov&&!closing)ss(1)},220);setTimeout(function(){if(alive&&!isHov&&!closing)ss(2)},300);setTimeout(function(){if(alive&&!isHov&&!closing)ss(3)},420)},2500+Math.random()*2000)}
   setTimeout(startBlink,1800);
   var dt=setTimeout(function(){if(!isHov&&alive)doClose()},6000+Math.random()*3000);
-  var isTouch='ontouchstart' in window||navigator.maxTouchPoints>0;
-  if(!isTouch){
-  wrap.addEventListener('mouseenter',function(){
-    if(!alive||closing)return;
-    isHov=true;clearTimeout(dt);clearInterval(blinkTimer);
-    ss(4);setTimeout(function(){if(isHov&&alive&&!closing)ss(5)},150);
+  function showPhoto(){
     var wr=wrap.getBoundingClientRect(),bw=document.documentElement.clientWidth,bh=window.innerHeight,s2=window.scrollY||window.pageYOffset,mw=560,px,py;
     if(wr.left>bw/2){px=48+Math.random()*Math.max(50,wr.left-mw-100)}else{px=wr.right+40+Math.random()*Math.max(50,bw-wr.right-mw-80)}
     py=s2+48+Math.random()*Math.max(50,bh-400);
     px=Math.max(20,Math.min(px,bw-mw-20));py=Math.max(s2+20,Math.min(py,s2+bh-400));
     photoImg.src=photos[Math.floor(Math.random()*photos.length)];
     photoReveal.style.left=px+'px';photoReveal.style.top=py+'px';
-    openIris()});
+    openIris()}
+  wrap.addEventListener('mouseenter',function(){
+    if(!alive||closing)return;
+    isHov=true;clearTimeout(dt);clearInterval(blinkTimer);
+    ss(4);setTimeout(function(){if(isHov&&alive&&!closing)ss(5)},150);
+    showPhoto()});
   wrap.addEventListener('mouseleave',function(){if(!alive)return;isHov=false;closeIris();doClose()});
-  }
+  wrap.addEventListener('touchstart',function(e){
+    if(!alive||closing)return;
+    e.preventDefault();
+    if(!isHov){
+      isHov=true;clearTimeout(dt);clearInterval(blinkTimer);
+      ss(4);setTimeout(function(){if(isHov&&alive&&!closing)ss(5)},150);
+      showPhoto();
+    }else{
+      isHov=false;closeIris();doClose();
+    }},{passive:false});
   function doClose(){
     if(closing)return;closing=true;
     clearInterval(blinkTimer);clearTimeout(dt);closeIris();
