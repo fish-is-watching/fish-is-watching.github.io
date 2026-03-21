@@ -27,6 +27,25 @@
   {% include "footer.njk" %}
   {% include "eye.njk" %}
 
+  <script>
+  (function(){
+    var el=document.getElementById('weekly-countdown');
+    if(!el)return;
+    function update(){
+      var now=new Date();
+      var day=now.getDay();
+      var daysLeft=day===0?7:(7-day);
+      if(daysLeft===1){
+        el.textContent='Available for 1 day';
+      }else{
+        el.textContent='Available for '+daysLeft+' days';
+      }
+    }
+    update();
+    setInterval(update,3600000);
+  })();
+  </script>
+
   <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
   <script>
     if (window.netlifyIdentity) {

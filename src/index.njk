@@ -20,6 +20,7 @@ description: "fish is watching is a modular performance collective based in Stut
   <p class="section-title"><a href="/weekly/">Weekly Studio Session {{ latestWeekly.data.number }}</a></p>
   <p class="session-meta">{{ latestWeekly.data.date | formatDate }}{% if latestWeekly.data.participants %} / <span class="session-participants">{{ latestWeekly.data.participants | join(" / ") }}</span>{% endif %}</p>
   <p>Single take. No edits. Seven days online. Then replaced.</p>
+  <p class="weekly-countdown" id="weekly-countdown"></p>
   {% if latestWeekly.data.soundcloud_embed %}
   <div class="embed-container">
     {{ latestWeekly.data.soundcloud_embed | safe }}
