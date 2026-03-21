@@ -34,10 +34,18 @@
     function update(){
       var now=new Date();
       var day=now.getDay();
-      var daysLeft=day===0?7:(7-day);
-      if(daysLeft===1){
-        el.textContent='Available for 1 day';
+      // Count days until Sunday (day 0). Monday=1 means 6 days left.
+      // Sunday itself = 7 (new cycle starts Monday)
+      var daysLeft=day===0?7:7-day;
+      if(daysLeft<=2){
+        el.style.color='var(--grey-500)';
+        if(daysLeft===1){
+          el.textContent='Last day online';
+        }else{
+          el.textContent=daysLeft+' days remaining';
+        }
       }else{
+        el.style.color='';
         el.textContent='Available for '+daysLeft+' days';
       }
     }

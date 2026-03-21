@@ -14,6 +14,7 @@
   --grey-300: #B3B3B3;
   --grey-100: #F0F0F0;
   --accent: #D64D8A;
+  --eye-accent: #D64D8A;
 
   --font: 'Archivo', sans-serif;
   --size: 23px;
@@ -93,7 +94,7 @@ a {
 
 a:hover {
   color: var(--black);
-  text-decoration-color: var(--black);
+  text-decoration-color: var(--eye-accent);
 }
 
 /* ------------------------------------------------
@@ -141,7 +142,7 @@ header nav a {
 }
 
 header nav a:hover {
-  text-decoration-color: var(--black);
+  text-decoration-color: var(--eye-accent);
 }
 
 header nav a.active {
