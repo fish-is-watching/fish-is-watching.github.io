@@ -79,13 +79,32 @@ function spawn(){
   wrap.addEventListener('touchstart',function(e){
     if(!alive||closing)return;
     e.preventDefault();
-    if(!isHov){
-      isHov=true;clearTimeout(dt);clearInterval(blinkTimer);
-      ss(4);setTimeout(function(){if(isHov&&alive&&!closing)ss(5)},150);
-      showPhoto();
-    }else{
-      isHov=false;closeIris();doClose();
-    }},{passive:false});
+    if(isHov)return;
+    isHov=true;clearTimeout(dt);clearInterval(blinkTimer);
+    ss(4);setTimeout(function(){if(alive&&!closing)ss(5)},150);
+    setTimeout(function(){
+      if(!alive||closing)return;
+      isHov=false;
+      ss(4);
+      setTimeout(function(){if(alive&&!closing)ss(3)},200);
+      // blink 1
+      setTimeout(function(){if(alive&&!closing)ss(2)},600);
+      setTimeout(function(){if(alive&&!closing)ss(1)},700);
+      setTimeout(function(){if(alive&&!closing)ss(0)},780);
+      setTimeout(function(){if(alive&&!closing)ss(1)},860);
+      setTimeout(function(){if(alive&&!closing)ss(2)},940);
+      setTimeout(function(){if(alive&&!closing)ss(3)},1060);
+      // blink 2
+      setTimeout(function(){if(alive&&!closing)ss(2)},1500);
+      setTimeout(function(){if(alive&&!closing)ss(1)},1600);
+      setTimeout(function(){if(alive&&!closing)ss(0)},1680);
+      setTimeout(function(){if(alive&&!closing)ss(1)},1760);
+      setTimeout(function(){if(alive&&!closing)ss(2)},1840);
+      setTimeout(function(){if(alive&&!closing)ss(3)},1960);
+      // close
+      setTimeout(function(){if(alive)doClose()},2400);
+    },5000);
+    },{passive:false});
   function doClose(){
     if(closing)return;closing=true;
     clearInterval(blinkTimer);clearTimeout(dt);closeIris();
